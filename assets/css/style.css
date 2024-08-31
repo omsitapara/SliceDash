@@ -5423,6 +5423,10 @@ h5.panel-title span {
     border-radius: 3px;
 }
 
+#login_submit{
+    cursor: pointer;
+}
+
 .payment_status{
 	padding: 10px;
     text-align: center;
