@@ -4130,7 +4130,7 @@ h5.panel-title a:hover {
 }
 h5.panel-title a::before {
     color: #242424;
-    content: "";
+    content: "⌃";
     display: inline-block;
     font-family: "Ionicons";
     font-size: 15px;
@@ -4140,7 +4140,7 @@ h5.panel-title a::before {
 }
 h5.panel-title a.collapsed::after {
     color: #666666;
-    content: "";
+    content: "⌄";
     display: inline-block;
     font-family: "Ionicons";
     font-size: 12px;
