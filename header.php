@@ -73,10 +73,10 @@ foreach($cartArr as $list){
                                         <ul>
                                     
                                     
-                                    <li class="top-hover"><a href="#"><?php echo "Welcome ".$_SESSION['FOOD_USER_NAME'] ?><i class="ion-chevron-down"></i></a>
+                                    <li class="top-hover"><a href="#"><?php echo "Welcome <span id='user_top_name'>".$_SESSION['FOOD_USER_NAME']?></span><i class="ion-chevron-down"></i></a>
                                         <ul>
-                                            <li><a href="profile.php">Profile </a></li>
-                                            <li><a href="order_histroy.php">Order History</a></li>
+                                            <li><a href="profile">Profile </a></li>
+                                            <li><a href="order_histroy">Order History</a></li>
                                             <li><a href="logout">Logout</a></li>
                                         </ul>
                                     </li>

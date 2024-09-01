@@ -109,13 +109,19 @@ if(isset($_POST['place_order'])){
 														<div class="col-lg-3 col-md-6">
 															<div class="billing-info">
 																<label>Mobile</label>
-																<input type="text"  name="checkout_mobile" required value="<?php echo $userArr['mobile']?>">
+																<input type="text"  name="checkout_mobile"
+                                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                            maxlength = "10"
+                                                                required value="<?php echo $userArr['mobile']?>">
 															</div>
 														</div>
 														<div class="col-lg-3 col-md-6">
 															<div class="billing-info">
 																<label>Zip/Postal Code</label>
-																<input type="text"  name="checkout_zip" required>
+																<input type="text"  name="checkout_zip" required
+                                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                            maxlength = "6"
+                                                                >
 															</div>
 														</div>
 														<div class="col-lg-12 col-md-12">

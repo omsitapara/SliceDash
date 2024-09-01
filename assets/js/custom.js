@@ -136,3 +136,48 @@ function delete_cart(id,is_type){
 		}
 	});
 }
+
+jQuery('#frmProfile').on('submit',function(e){
+	jQuery('#profile_submit').attr('disabled',true);
+	jQuery('#form_msg').html('Please wait...');
+	jQuery.ajax({
+		url:'update_profile',
+		type:'post',
+		data:jQuery('#frmProfile').serialize(),
+		success:function(result){
+			jQuery('#form_msg').html('');
+			jQuery('#profile_submit').attr('disabled',false);
+			var data=jQuery.parseJSON(result);
+			if(data.status=='success'){
+				jQuery('#user_top_name').html(jQuery('#uname').val());
+				swal("Success",data.msg,"success");
+			}
+		}
+		
+	});
+	e.preventDefault();
+});	
+
+jQuery('#frmPassword').on('submit',function(e){
+	jQuery('#password_submit').attr('disabled',true);
+	jQuery('#password_form_msg').html('Please wait...');
+	jQuery.ajax({
+		url:'update_profile',
+		type:'post',
+		data:jQuery('#frmPassword').serialize(),
+		success:function(result){
+			jQuery('#password_form_msg').html('');
+			jQuery('#password_submit').attr('disabled',false);
+			var data=jQuery.parseJSON(result);
+			if(data.status=='success'){
+				swal("Success",data.msg,"success");
+				jQuery('#password_form_msg').html(data.msg);
+			}
+			if(data.status=='error'){
+				swal("Error", data.msg,"error");
+			}
+		}
+		
+	});
+	e.preventDefault();
+});	

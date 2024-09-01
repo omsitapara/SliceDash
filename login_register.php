@@ -22,9 +22,6 @@ include ("header.php");
                                                 <input type="email" name="user_email" id="user_email" placeholder="Email" required>
                                                 <input type="password" name="user_password" id="user_password" placeholder="Password" required>
                                                 <div class="button-box">
-                                                    <div class="login-toggle-btn">
-                                                        <a href="#">Forgot Password?</a>
-                                                    </div>
                                                     <button type="submit" id="login_submit">Login</button>
 													<input type="hidden" name="type" value="login"/>
 												   <div id="form_login_msg" class="success_field"></div>
