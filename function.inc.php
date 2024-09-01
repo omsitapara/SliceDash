@@ -144,4 +144,16 @@ function getOrderById($oid){
 	}
 	return $data;	
 }
+
+function getDeliveryBoyNameById($id){
+	global $con;
+	$sql="select name,mobile from delivery_boy where id='$id'";
+	$res=mysqli_query($con,$sql);
+	if(mysqli_num_rows($res)>0){
+	$row=mysqli_fetch_assoc($res);
+	return $row['name'].'('.$row['mobile'].')';
+	}else{
+		return 'Not Assigned';
+	}
+}
 ?>

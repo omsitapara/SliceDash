@@ -15,13 +15,13 @@ $res=mysqli_query($con,$sql);
                       <thead>
                         <tr>
                             <th width="5%">Order Id</th>
-                            <th width="20%">Name/Mobile</th>
-                            <th width="20%">Address</th>
-                            <th width="5%">Price</th>
-                            <th width="20%">Order Details</th>
+                            <th width="15%">Name/Mobile</th>
+                            <th width="23%">Address</th>
+							<th width="15%">Delivery Boy</th>
+							<th width="12%">Order Status</th>
+                            <th width="10%">Order Details</th>
                             <th width="10%">Payment Status</th>
-                            <th width="10%">Order Status</th>
-							<th width="10%">Added On</th>
+							<th width="15%">Ordered On</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -37,33 +37,12 @@ $res=mysqli_query($con,$sql);
 							<td><?php echo $row['address']?>
                                 <br><br><?php echo $row['zipcode']?>
                             </td>
-                            <td><?php echo '₹'.$row['total_price']?></td>
+                            <td><?php echo getDeliveryBoyNameById($row['delivery_boy_id'])?></td>
+							<td><?php echo ucfirst($row['order_status_str'])?></td>
                             <td>
-							<!-- <table style="border:1px solid #e9e8ef;">
-								<tr>
-									<th>Dish</th>
-									<th>Attribute</th>
-									<th>Price</th>
-									<th>Qty</th>
-								</tr>
-								<?php
-								$getOrderDetails=getOrderDetails($row['id']);
-								foreach($getOrderDetails as $list){
-									?>
-										<tr>
-											<td><?php echo $list['dish']?></td>
-											<td><?php echo $list['attribute']?></td>
-											<td><?php echo $list['price']?></td>
-											<td><?php echo $list['qty']?></td>
-										</tr>
-									<?php
-								}
-								?>
-								</table> -->
 								<a href="order_details?id=<?php echo $row['id']?>">Click Here</a>
 							</td>
                             <td><div class="payment_status payment_status_<?php echo $row['payment_status']?>"><?php echo ucfirst($row['payment_status'])?></div></td>
-                            <td><?php echo ucfirst($row['order_status_str'])?></td>
 							<td><?php 
 							$dateStr= strtotime($row['added_on']);
 							echo date('d-m-Y h:i',$dateStr);
@@ -84,4 +63,4 @@ $res=mysqli_query($con,$sql);
             </div>
           </div>
         
-<?php include('footer.php');?>
+

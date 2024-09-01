@@ -23,7 +23,8 @@ $res=mysqli_query($con,$sql);
                                             <th>Order Id</th>
                                             <th>Price</th>
                                             <th>Address</th>
-                                            <th>Items</th>
+                                            <th>Order Detail</th>
+											<th>Delivery Boy</th>
                                             <th>Order Status</th>
                                             <th>Payment Status</th>
                                         </tr>
@@ -41,28 +42,9 @@ $res=mysqli_query($con,$sql);
                                             <td><?php echo $row['address']?><br/>
 											<?php echo $row['zipcode']?></td>
 											<td>
-												<table style="border:1px solid #e9e8ef;">
-												<tr>
-													<th>Dish</th>
-													<th>Attribute</th>
-													<th>Price</th>
-													<th>Qty</th>
-												</tr>
-												<?php
-												$getOrderDetails=getOrderDetails($row['id']);
-												foreach($getOrderDetails as $list){
-													?>
-														<tr>
-															<td><?php echo $list['dish']?></td>
-															<td><?php echo $list['attribute']?></td>
-															<td><?php echo $list['price']?></td>
-															<td><?php echo $list['qty']?></td>
-														</tr>
-													<?php
-												}
-												?>
-												</table>
+												<a href="order_detail?id=<?php echo $row['id']?>" class="btn btn-primary">Click Here</a>
 											</td>
+											<td><?php echo getDeliveryBoyNameById($row['delivery_boy_id'])?></td>
 											<td><?php echo $row['order_status_str']?></td>
 											<td>
 												<div class="payment_status payment_status_<?php echo $row['payment_status']?>"><?php echo ucfirst($row['payment_status'])?></div>
