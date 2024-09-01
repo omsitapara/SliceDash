@@ -22,7 +22,7 @@ $res=mysqli_query($con,$sql);
   <div class="card">
             <div class="card-body">
               <h1 class="grid_title">Delivery Riders</h1>
-              <a href="manage_delivery_boy.php" class="add_link">Add Delivery Buddy</a>
+              <a href="manage_delivery_boy.php" class="btn btn-primary">Add Delivery Buddy</a>
 			  <div class="row grid_box">
                 <div class="col-12">
                   <div class="table-responsive">

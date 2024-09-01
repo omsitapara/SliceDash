@@ -26,7 +26,7 @@ $res=mysqli_query($con,$sql);
   <div class="card">
             <div class="card-body">
               <h1 class="grid_title">Menu Catalogue</h1>
-			  <a href="manage_dish.php" class="add_link">Add Item</a>
+			  <a href="manage_dish.php" class="btn btn-primary">Add Item</a>
 			  <div class="row grid_box">
 				
                 <div class="col-12">

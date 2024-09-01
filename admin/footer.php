@@ -31,4 +31,4 @@
   <script src="assets/js/data-table.js"></script>
   <!-- End custom js for this page-->
 </body>
-</html> -->
+</html>

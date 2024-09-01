@@ -39,7 +39,7 @@ $res=mysqli_query($con,$sql);
                             </td>
                             <td><?php echo '₹'.$row['total_price']?></td>
                             <td>
-								<table style="border:1px solid #e9e8ef;">
+							<!-- <table style="border:1px solid #e9e8ef;">
 								<tr>
 									<th>Dish</th>
 									<th>Attribute</th>
@@ -59,7 +59,8 @@ $res=mysqli_query($con,$sql);
 									<?php
 								}
 								?>
-								</table>
+								</table> -->
+								<a href="order_details?id=<?php echo $row['id']?>">Click Here</a>
 							</td>
                             <td><div class="payment_status payment_status_<?php echo $row['payment_status']?>"><?php echo ucfirst($row['payment_status'])?></div></td>
                             <td><?php echo ucfirst($row['order_status_str'])?></td>

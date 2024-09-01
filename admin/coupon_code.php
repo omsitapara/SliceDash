@@ -25,7 +25,7 @@ $res=mysqli_query($con,$sql);
   <div class="card">
             <div class="card-body">
               <h1 class="grid_title">Coupon Codes</h1>
-              <a href="manage_coupon_code.php" class="add_link">Add New Coupon</a>
+              <a href="manage_coupon_code.php" class="btn btn-primary">Add New Coupon</a>
               <div class="row grid_box">
                 <div class="col-12">
                   <div class="table-responsive">
