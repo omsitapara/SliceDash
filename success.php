@@ -12,7 +12,7 @@ if(!isset($_SESSION['ORDER_ID'])){
                             <h2>Order Received <span>#<?php echo $_SESSION['ORDER_ID']?></span></h2>
                             <p class="paragraph-blog">We have successfully received your order. Just some more moments before Hapiness gets delivered to your Home.</p>
                             <div class="overview-btn mt-45">
-                                <a class="btn-style-2" href="shop">My Orders</a>
+                                <a class="btn-style-2" href="order_history">My Orders</a>
                             </div>
                         </div>
                     </div>
