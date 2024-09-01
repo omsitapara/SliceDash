@@ -75,43 +75,49 @@
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="index.php">
+            <a class="nav-link" href="index">
               <i class="mdi mdi-monitor-dashboard menu-icon"></i>
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="category.php">
+            <a class="nav-link" href="order">
+              <i class="mdi mdi-monitor-dashboard menu-icon"></i>
+              <span class="menu-title">Orders</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="category">
               <i class="mdi mdi-vector-arrange-below menu-icon"></i>
               <span class="menu-title">Category</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="dish.php">
+            <a class="nav-link" href="dish">
               <i class="mdi mdi-silverware-fork-knife menu-icon"></i>
               <span class="menu-title">Menu</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="user.php">
+            <a class="nav-link" href="user">
               <i class="mdi mdi-account menu-icon"></i>
               <span class="menu-title">Users</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="delivery_boy.php">
+            <a class="nav-link" href="delivery_boy">
               <i class="mdi mdi-motorbike menu-icon"></i>
               <span class="menu-title">Delivery Riders</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="coupon_code.php">
+            <a class="nav-link" href="coupon_code">
               <i class="mdi mdi-ticket-percent menu-icon"></i>
               <span class="menu-title">Coupon Codes</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="contact_us.php">
+            <a class="nav-link" href="contact_us">
               <i class="mdi mdi-forum menu-icon"></i>
               <span class="menu-title">Messages</span>
             </a>

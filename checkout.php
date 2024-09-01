@@ -96,7 +96,7 @@ if(isset($_POST['place_order'])){
 													<div class="row">
 														<div class="col-lg-3 col-md-6">
 															<div class="billing-info">
-																<label>First Name</label>
+																<label>Name</label>
 																<input type="text" name="checkout_name" required value="<?php echo $userArr['name']?>">
 															</div>
 														</div>
@@ -170,14 +170,14 @@ if(isset($_POST['place_order'])){
 											<h4><a href="#">Phantom Remote </a></h4>
 											<h6>Qty: <?php echo $list['qty']?></h6>
 											<span><?php echo 
-														$list['qty']*$list['price'];?> Rs</span>
+														'₹'.$list['qty']*$list['price'];?></span>
 										</div>
 										
 									</li>
 									<?php } ?>
 								</ul>
 								<div class="shopping-cart-total">
-									<h4>Total : <span class="shop-total"><?php echo $totalPrice?> Rs</span></h4>
+									<h4>Total : <span class="shop-total"><?php echo '₹'.$totalPrice?></span></h4>
 								</div>
 								
 							</div>

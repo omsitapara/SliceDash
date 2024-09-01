@@ -76,7 +76,7 @@ foreach($cartArr as $list){
                                     <li class="top-hover"><a href="#"><?php echo "Welcome <span id='user_top_name'>".$_SESSION['FOOD_USER_NAME']?></span><i class="ion-chevron-down"></i></a>
                                         <ul>
                                             <li><a href="profile">Profile </a></li>
-                                            <li><a href="order_histroy">Order History</a></li>
+                                            <li><a href="order_history">Order History</a></li>
                                             <li><a href="logout">Logout</a></li>
                                         </ul>
                                     </li>
