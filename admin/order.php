@@ -63,4 +63,4 @@ $res=mysqli_query($con,$sql);
             </div>
           </div>
         
-
+<?php include 'footer.php'?>
