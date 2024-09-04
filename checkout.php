@@ -142,6 +142,7 @@ if(isset($_POST['place_order'])){
 																<label>Have a Coupon Code?</label>
 																<input type="text"  name="coupon_code" id="coupon_code">
 															</div>
+															<div class="remove_coupon"><a class="remove_c" href='checkout'>Remove Coupon</a></div>
 															<div id="coupon_code_msg"></div>
 														</div>
 														<div class="col-lg-3 col-md-12">
@@ -187,7 +188,7 @@ if(isset($_POST['place_order'])){
 											<a href="#"><img alt="" src="<?php echo SITE_DISH_IMAGE.$list['image']?>"></a>
 										</div>
 										<div class="shopping-cart-title">
-											<h4><a href="#">Phantom Remote </a></h4>
+											<h4><a href="#"><?php echo $list['dish']?> </a></h4>
 											<h6>Qty: <?php echo $list['qty']?></h6>
 											<span><?php echo 
 														'₹'.$list['qty']*$list['price'];?></span>
@@ -202,7 +203,7 @@ if(isset($_POST['place_order'])){
 								<div class="shopping-cart-total coupon_price_box">
 									<h4>Coupon Code : <span class="shop-total coupon_code_str"></span></h4>
 								</div>
-								<div class="shopping-cart-total">
+								<div class="shopping-cart-total coupon_price_box">
 									<h4>Final Price : <span class="shop-total final_price"></span></h4>
 								</div>
 							</div>

@@ -37,7 +37,7 @@ if($check>0){
 		$arr=array('status'=>'error','msg'=>'Coupon code will be applied for cart value greater then '.$cart_min_value);	
 	}
 }else{
-	$arr=array('status'=>'error','msg'=>'Coupon code not found');	
+	$arr=array('status'=>'error','msg'=>'Invalid Coupon Code');	
 }
 echo json_encode($arr);
 

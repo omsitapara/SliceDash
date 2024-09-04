@@ -194,13 +194,16 @@ function apply_coupon(){
 			success:function(result){
 				var data=jQuery.parseJSON(result);
 				if(data.status=='success'){
-					swal("Success Message", data.msg, "success");
+					swal("Applied", data.msg, "success");
 					jQuery('.shopping-cart-total').show();
+					jQuery('.remove_coupon').show();
 					jQuery('.coupon_code_str').html(coupon_code);
 					jQuery('.final_price').html('₹'+data.coupon_code_apply);
+					jQuery('#coupon_code_msg').html('');
 				}
 				if(data.status=='error'){
-					swal("Error Message", data.msg, "error");
+					swal("Coupon not applied", data.msg, "error");
+					jQuery('#coupon_code_msg').html('');
 				}
 			}
 		});
