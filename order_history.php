@@ -26,7 +26,6 @@ $res=mysqli_query($con,$sql);
                                             <th>Order Detail</th>
 											<th>Delivery Boy</th>
                                             <th>Order Status</th>
-                                            <th>Payment Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -38,7 +37,8 @@ $res=mysqli_query($con,$sql);
                                             <td><?php echo $row['id']?>
 											<br/>
 											</td>
-                                            <td><?php echo '₹'.$row['total_price']?></td>
+                                            <td><?php echo '₹'.$row['final_price']?>
+                                            </td>
                                             <td><?php echo $row['address']?><br/>
 											<?php echo $row['zipcode']?></td>
 											<td>
@@ -46,9 +46,6 @@ $res=mysqli_query($con,$sql);
 											</td>
 											<td><?php echo getDeliveryBoyNameById($row['delivery_boy_id'])?></td>
 											<td><?php echo $row['order_status_str']?></td>
-											<td>
-												<div class="payment_status payment_status_<?php echo $row['payment_status']?>"><?php echo ucfirst($row['payment_status'])?></div>
-											</td>
                                         </tr>
 										<?php }} ?>
                                     </tbody>

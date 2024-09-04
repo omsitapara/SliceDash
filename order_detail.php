@@ -2,6 +2,10 @@
 session_start();
 include 'header.php';
 $id=get_safe_value($_GET['id']);
+$uid=$_SESSION['FOOD_USER_ID'];
+$sql="select coupon_code,final_price from order_master where id='$id'";
+$res=mysqli_query($con,$sql);
+$row=mysqli_fetch_assoc($res);
 ?>
 <div class="card">
             <div class="card-body">
@@ -23,6 +27,7 @@ $id=get_safe_value($_GET['id']);
                        <?php
                        $totalPrice=0;
                        $getOrderDetails=getOrderDetails($id);
+                       $uid=$_SESSION['FOOD_USER_ID'];
                        foreach($getOrderDetails as $list){
                         $totalPrice = $totalPrice +$list['qty']*$list['price']
                         ?>
@@ -39,13 +44,19 @@ $id=get_safe_value($_GET['id']);
                       </tbody>
                     </table>
 
-                    <div>
-                        <p style="text-align-last:right;
-                                margin-right:100px;
+                    <div style="float:right; margin-right: 80px;">
+                        <p style="
                                 margin-top:8px;
                                 font-weight:bold;
-                                font-size:20px">
-                        Total: <?php echo '₹'.$totalPrice?></p>
+                                font-size:16px">
+                        Total: <?php echo '₹'.$totalPrice?><br/>
+                        Coupon: <?php if($row['coupon_code']==''){
+                          echo 'Not Applied';
+                        }else{
+                          echo $row['coupon_code'];
+                        }?><br/>
+                        FinalPrice: <?php echo '₹'.$row['final_price']?>
+                        </p>
                     </div>
                     <br>
                     <br>

@@ -156,4 +156,13 @@ function getDeliveryBoyNameById($id){
 		return 'Not Assigned';
 	}
 }
+
+function getcartTotalPrice(){
+	$cartArr=getUserFullCart();
+	$totalPrice=0;
+	foreach($cartArr as $list){
+		$totalPrice=$totalPrice+($list['qty']*$list['price']);
+	}
+	return $totalPrice;
+};
 ?>

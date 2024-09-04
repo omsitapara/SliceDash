@@ -181,3 +181,28 @@ jQuery('#frmPassword').on('submit',function(e){
 	});
 	e.preventDefault();
 });	
+
+function apply_coupon(){
+	var coupon_code=jQuery('#coupon_code').val();
+	if(coupon_code==''){
+		jQuery('#coupon_code_msg').html('Please enter coupon code');
+	}else{
+		jQuery.ajax({
+			url:FRONT_SITE_PATH+'apply_coupon',
+			type:'post',
+			data:'coupon_code='+coupon_code,
+			success:function(result){
+				var data=jQuery.parseJSON(result);
+				if(data.status=='success'){
+					swal("Success Message", data.msg, "success");
+					jQuery('.shopping-cart-total').show();
+					jQuery('.coupon_code_str').html(coupon_code);
+					jQuery('.final_price').html('₹'+data.coupon_code_apply);
+				}
+				if(data.status=='error'){
+					swal("Error Message", data.msg, "error");
+				}
+			}
+		});
+	}
+}

@@ -3,6 +3,10 @@ include 'header.php';
 if(!isset($_SESSION['ORDER_ID'])){
     redirect('shop');
 }
+if(isset($_SESSION['COUPON_CODE'])){
+	unset($_SESSION['COUPON_CODE']);
+	unset($_SESSION['FINAL_PRICE']);
+}
 ?>
         <div class="about-us-area pt-50 pb-100">
             <div class="container">
