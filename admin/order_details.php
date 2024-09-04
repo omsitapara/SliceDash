@@ -6,6 +6,9 @@ $res=mysqli_query($con,$sql);
 $row=mysqli_fetch_assoc($res);
 if(isset($_GET['id']) && $_GET['id']>0){
     $id=get_safe_value($_GET['id']);
+    $coupon_sql="select coupon_code,final_price from order_master where id='$id'";
+    $coupon_res=mysqli_query($con,$coupon_sql);
+    $coupon_row=mysqli_fetch_assoc($coupon_res);
     if(isset($_GET['order_status'])){
         $order_status=get_safe_value($_GET['order_status']);
         mysqli_query($con,"update order_master set order_status='$order_status' where id='$id'");
@@ -57,14 +60,20 @@ else{
                       </tbody>
                     </table>
 
-                    <div>
-                        <p style="text-align-last:right;
-                                margin-right:100px;
+                    <div style="float:right; margin-right: 80px;">
+                        <p style="
                                 margin-top:8px;
                                 font-weight:bold;
-                                font-size:20px">
-                        Total: <?php echo '₹'.$totalPrice?></p>
-                    </div>
+                                font-size:16px">
+                        Total: <?php echo '₹'.$totalPrice?><br/>
+                        Coupon: <?php if($coupon_row['coupon_code']==''){
+                          echo 'Not Applied';
+                        }else{
+                          echo $coupon_row['coupon_code'];
+                        }?><br/>
+                        FinalPrice: <?php echo '₹'.$coupon_row['final_price']?>
+                        </p>
+                    </div><br/><br/><br/><br/><br/><br>
                     <?php
                         $orderStatusRes=mysqli_query($con,"select * from order_status order by id");
                         $orderDeliveryBoyRes=mysqli_query($con,"select * from delivery_boy where status=1 order by name");
@@ -78,7 +87,7 @@ else{
                             ?>
                         </select>
                     </div>
-                    <div style="margin-right:200px; margin-top:8px;float:right">    
+                    <div style="margin-right:80px; margin-top:8px;float:right">    
                         <select class="form-control wSelect20" style="margin-left:18px; margin-bottom:10px" name="delivery_boy" id="delivery_boy" onchange="updateDeliveryBoy()">
                             <option val=''>Assign Delivery Boy</option>
                             <?php while($orderDeliveryBoyRow=mysqli_fetch_assoc($orderDeliveryBoyRes)){
