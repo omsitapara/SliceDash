@@ -4264,7 +4264,7 @@ h5.panel-title span {
     text-transform: uppercase;
     border-radius: 3px;
 }
-.billing-btn > button {
+.billing-btn > button{
     background-color: #f2f2f2;
     border: medium none;
     border-radius: 3px;
@@ -5575,4 +5575,13 @@ h5.panel-title span {
 .remove_c{
     color:blue;
     font-size: 12px;
+}
+
+.pay_btnn {
+    border: 2px solid;
+    height: 45px;
+    background: lightgrey;
+    padding-left: 10px;
+    margin-left: 10px;
+    cursor: pointer;
 }

@@ -1,7 +1,7 @@
 <?php 
 include('top.php');
 
-$sql="select order_master.*,order_status.order_status as order_status_str from order_master,order_status where order_master.order_status=order_status.id order by order_master.id desc";
+$sql="select order_master.*,order_status.order_status as order_status_str from order_master,order_status where order_master.order_status=order_status.id and payment_status='success' order by order_master.id desc";
 $res=mysqli_query($con,$sql);
 
 ?>
@@ -20,7 +20,7 @@ $res=mysqli_query($con,$sql);
 							<th width="15%">Delivery Boy</th>
 							<th width="12%">Order Status</th>
                             <th width="10%">Order Details</th>
-                            <th width="10%">Payment Status</th>
+                            <th width="10%">Payment Method</th>
 							<th width="15%">Ordered On</th>
                         </tr>
                       </thead>
@@ -42,7 +42,7 @@ $res=mysqli_query($con,$sql);
                             <td>
 								<a href="order_details?id=<?php echo $row['id']?>">Click Here</a>
 							</td>
-                            <td><div class="payment_status payment_status_<?php echo $row['payment_status']?>"><?php echo ucfirst($row['payment_status'])?></div></td>
+                            <td><?php echo strtoupper($row['payment_type'])?></td>
 							<td><?php 
 							$dateStr= strtotime($row['added_on']);
 							echo date('d-m-Y h:i',$dateStr);

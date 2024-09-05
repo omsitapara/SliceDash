@@ -36,16 +36,22 @@ if(isset($_POST['place_order'])){
 		$final_price=$totalPrice;
 	}
 	$added_on=date('Y-m-d h:i:s');
-	$sql="insert into order_master(user_id,name,email,mobile,address,zipcode,total_price,order_status,payment_status,added_on,coupon_code,final_price) values('".$_SESSION['FOOD_USER_ID']."','$checkout_name','$checkout_email','$checkout_mobile','$checkout_address','$checkout_zip','$totalPrice','1','pending','$added_on','$coupon_code','$final_price')";
+	$sql="insert into order_master(user_id,name,email,mobile,address,zipcode,total_price,order_status,payment_status,added_on,coupon_code,final_price,payment_type) values('".$_SESSION['FOOD_USER_ID']."','$checkout_name','$checkout_email','$checkout_mobile','$checkout_address','$checkout_zip','$totalPrice','1','pending','$added_on','$coupon_code','$final_price','$payment_type')";
 	mysqli_query($con,$sql);
 	$insert_id=mysqli_insert_id($con);
 	$_SESSION['ORDER_ID']=$insert_id;
 	foreach($cartArr as $key=>$val){
 		mysqli_query($con,"insert into order_detail(order_id,dish_details_id,price,qty) values('$insert_id','$key','".$val['price']."','".$val['qty']."')");
 	}
+	if($payment_type=='cod'){
+	mysqli_query($con,"update order_master set payment_status='success' where id='$insert_id'");
 	emptyCart();
 	redirect(FRONT_SITE_PATH.'success');
-	
+	}
+	if($payment_type=='online'){
+		emptycart();
+		redirect('razorpay?name='.$checkout_name.'&amt='.$final_price.'&id='.$insert_id.'');
+	}
 }
 ?>
 
@@ -116,7 +122,7 @@ if(isset($_POST['place_order'])){
 														<div class="col-lg-3 col-md-6">
 															<div class="billing-info">
 																<label>Mobile</label>
-																<input type="text"  name="checkout_mobile"
+																<input type="number"  name="checkout_mobile"
                                                                 oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                                             maxlength = "10"
                                                                 required value="<?php echo $userArr['mobile']?>">
@@ -125,7 +131,7 @@ if(isset($_POST['place_order'])){
 														<div class="col-lg-3 col-md-6">
 															<div class="billing-info">
 																<label>Zip/Postal Code</label>
-																<input type="text"  name="checkout_zip" required
+																<input type="number"  name="checkout_zip" required
                                                                 oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                                             maxlength = "6"
                                                                 >
@@ -158,14 +164,14 @@ if(isset($_POST['place_order'])){
 															<input type="radio" name="payment_type" value="cod" checked="checked">
 															<label>Cash on Delivery(COD)</label>
 														</div>
-														<!--<div class="single-ship">
-															<input type="radio" name="address" value="dadress">
-															<label>Ship to different address</label>
-														</div>-->
+														<div class="single-ship">
+															<input type="radio" name="payment_type" value="online">
+															<label>Online Payment</label>
+														</div>
 													</div>
 													<div class="billing-back-btn">
 														<div class="billing-btn">
-															<button type="submit" name="place_order">Place Your Order</button>
+															<button type="submit" id="place_order" name="place_order">Place Your Order</button>
 														</div>
 													</div>
 												</div>

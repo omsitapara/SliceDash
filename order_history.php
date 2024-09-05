@@ -4,7 +4,7 @@ if(!isset($_SESSION['FOOD_USER_ID'])){
 	redirect(FRONT_SITE_PATH.'shop');
 }
 $uid=$_SESSION['FOOD_USER_ID'];
-$sql="select order_master.*,order_status.order_status as order_status_str from order_master,order_status where order_master.order_status=order_status.id and order_master.user_id='$uid' order by order_master.id desc";
+$sql="select order_master.*,order_status.order_status as order_status_str from order_master,order_status where order_master.order_status=order_status.id and order_master.user_id='$uid' and payment_status='success' order by order_master.id desc";
 
 $res=mysqli_query($con,$sql);
 ?>
@@ -20,12 +20,13 @@ $res=mysqli_query($con,$sql);
                                 <table>
                                     <thead>
                                         <tr>
-                                            <th>Order Id</th>
-                                            <th>Price</th>
-                                            <th>Address</th>
-                                            <th>Order Detail</th>
-											<th>Delivery Boy</th>
-                                            <th>Order Status</th>
+                                            <th width="10%">Order Id</th>
+                                            <th width="10%">Price</th>
+                                            <th width="25%">Address</th>
+                                            <th width="15%">Order Detail</th>
+                                            <th width="10%">Payment Method</th>
+											<th width="15%">Delivery Boy</th>
+                                            <th width="15%">Order Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -44,6 +45,7 @@ $res=mysqli_query($con,$sql);
 											<td>
 												<a href="order_detail?id=<?php echo $row['id']?>" class="btn btn-primary">Click Here</a>
 											</td>
+                                            <td><?php echo strtoupper($row['payment_type']) ?></td>
 											<td><?php echo getDeliveryBoyNameById($row['delivery_boy_id'])?></td>
 											<td><?php echo $row['order_status_str']?></td>
                                         </tr>
