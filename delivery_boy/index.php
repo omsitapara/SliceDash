@@ -62,7 +62,7 @@ $res=mysqli_query($con,$sql);
                                           <th width="20%">Name/Mobile</th>
                                           <th width="20%">Address/Zipcode</th>
                                           <th width="5%">Price</th>
-										  <th width="10%">Payment Type</th>
+										            <th width="10%">Payment Type</th>
                                           <th width="10%">Order Status</th>
                                           <th width="15%">Added On</th>
                                        </tr>
