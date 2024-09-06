@@ -46,6 +46,7 @@ if(isset($_POST['submit'])){
             <div class="auth-form-light text-left p-5">
               <div class="brand-logo text-center">
                 <img src="assets/images/logo.png" alt="logo">
+                <h5 style="color:#667eea">ADMIN PANEL</h5>
               </div>
               <h6 class="font-weight-light">Sign in to continue.</h6>
               <form class="pt-3" method="post">

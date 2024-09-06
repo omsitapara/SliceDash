@@ -1,27 +1,30 @@
-<?php
-session_start();
-include 'top.php';
-$sql="select order_master.*,order_status.order_status as order_status_str from order_master,order_status where order_master.order_status=order_status.id order by order_master.id desc";
-$res=mysqli_query($con,$sql);
-$row=mysqli_fetch_assoc($res);
+<?php 
+include('top.php');
 if(isset($_GET['id']) && $_GET['id']>0){
-    $id=get_safe_value($_GET['id']);
-    $coupon_sql="select coupon_code,final_price from order_master where id='$id'";
-    $coupon_res=mysqli_query($con,$coupon_sql);
-    $coupon_row=mysqli_fetch_assoc($coupon_res);
-    if(isset($_GET['order_status'])){
-        $order_status=get_safe_value($_GET['order_status']);
-        mysqli_query($con,"update order_master set order_status='$order_status' where id='$id'");
-        redirect(FRONT_SITE_PATH.'admin/order');
-    }
-    if(isset($_GET['delivery_boy'])){
-        $delivery_boy=get_safe_value($_GET['delivery_boy']);
-        mysqli_query($con,"update order_master set delivery_boy_id='$delivery_boy' where id='$id'");
-        redirect(FRONT_SITE_PATH.'admin/order');
-    }
-}
-else{
-    redirect('index');
+	
+	$id=get_safe_value($_GET['id']);
+	
+	if(isset($_GET['order_status'])){
+		$order_status=get_safe_value($_GET['order_status']);
+		mysqli_query($con,"update order_master set order_status='$order_status' where id='$id'");
+		redirect('order_details.php?id='.$id);
+	}
+	
+	if(isset($_GET['delivery_boy'])){
+		$delivery_boy=get_safe_value($_GET['delivery_boy']);
+		mysqli_query($con,"update order_master set delivery_boy_id='$delivery_boy' where id='$id'");
+		redirect('order_details.php?id='.$id);
+	}
+	
+	$sql="select order_master.*,order_status.order_status as order_status_str from order_master,order_status where order_master.order_status=order_status.id and order_master.id='$id' order by order_master.id desc";
+	$res=mysqli_query($con,$sql);
+	if(mysqli_num_rows($res)>0){
+		$orderRow=mysqli_fetch_assoc($res);
+	}else{
+		redirect('index.php');
+	}
+}else{
+	redirect('index.php');
 }
 ?>
 <div class="card">
@@ -78,6 +81,7 @@ else{
                         $orderStatusRes=mysqli_query($con,"select * from order_status order by id");
                         $orderDeliveryBoyRes=mysqli_query($con,"select * from delivery_boy where status=1 order by name");
                     ?>
+                    <div style="margin-left:24px">Current Status: <?php echo $orderRow['order_status_str']?></div>
                     <div style="margin:8px; float:left">
                         <select class="form-control wSelect20" style="margin-left:18px; margin-bottom:10px" name="order_status" id="order_status" onchange="updateOrderStatus()">
                             <option val=''>Update Order Status</option>
@@ -87,7 +91,8 @@ else{
                             ?>
                         </select>
                     </div>
-                    <div style="margin-right:80px; margin-top:8px;float:right">    
+                    <div style="margin-right:80px; margin-top:-20px;float:right">    
+                        <div style="margin-left: 18px;">Delivery Boy: <?php echo getDeliveryBoyNameById($orderRow['delivery_boy_id']) ?></div>
                         <select class="form-control wSelect20" style="margin-left:18px; margin-bottom:10px" name="delivery_boy" id="delivery_boy" onchange="updateDeliveryBoy()">
                             <option val=''>Assign Delivery Boy</option>
                             <?php while($orderDeliveryBoyRow=mysqli_fetch_assoc($orderDeliveryBoyRes)){
