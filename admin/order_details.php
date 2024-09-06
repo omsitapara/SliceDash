@@ -15,7 +15,9 @@ if(isset($_GET['id']) && $_GET['id']>0){
 		mysqli_query($con,"update order_master set delivery_boy_id='$delivery_boy' where id='$id'");
 		redirect('order_details.php?id='.$id);
 	}
-	
+	$coupon_sql="select coupon_code,final_price from order_master where id='$id'";
+    $coupon_res=mysqli_query($con,$coupon_sql);
+    $coupon_row=mysqli_fetch_assoc($coupon_res);
 	$sql="select order_master.*,order_status.order_status as order_status_str from order_master,order_status where order_master.order_status=order_status.id and order_master.id='$id' order by order_master.id desc";
 	$res=mysqli_query($con,$sql);
 	if(mysqli_num_rows($res)>0){

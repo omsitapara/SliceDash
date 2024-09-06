@@ -164,5 +164,15 @@ function getcartTotalPrice(){
 		$totalPrice=$totalPrice+($list['qty']*$list['price']);
 	}
 	return $totalPrice;
-};
+}
+
+function getSale($start,$end){
+	global $con;
+	$sql="select sum(final_price) as final_price from order_master where added_on between '$start' and '$end' and order_status=4";
+	$res=mysqli_query($con,$sql);
+	
+	while($row=mysqli_fetch_assoc($res)){
+		return '₹'.(int)$row['final_price'];
+	}
+}
 ?>
