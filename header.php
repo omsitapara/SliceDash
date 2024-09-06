@@ -53,6 +53,7 @@ foreach($cartArr as $list){
         <link rel="stylesheet" href="assets/css/responsive.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
         <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+        <script src="assets/js/custom.js"></script>
     </head>
     <body>
         <!-- header start -->

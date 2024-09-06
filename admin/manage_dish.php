@@ -9,6 +9,7 @@ $image="";
 $id="";
 $image_status='required';
 $image_error="";
+$taste="";
 if(isset($_GET['id']) && $_GET['id']>0){
 	$id=get_safe_value($_GET['id']);
 	$row=mysqli_fetch_assoc(mysqli_query($con,"select * from dish where id='$id'"));
@@ -18,6 +19,7 @@ if(isset($_GET['id']) && $_GET['id']>0){
 	$dish_detail=$row['dish_detail'];
 	$image=$row['image'];
 	$image_status='';
+	$taste=$row['taste'];
 }
 
 if(isset($_GET['dish_details_id']) && $_GET['dish_details_id']>0){
@@ -50,7 +52,7 @@ if(isset($_POST['submit'])){
 			}else{
 				$image=$_FILES['image']['name'];
 				$success = move_uploaded_file($_FILES['image']['tmp_name'],SERVER_DISH_IMAGE.$image);
-				mysqli_query($con,"insert into dish(category_id,dish,dish_detail,status,added_on,image,type) values('$category_id','$dish','$dish_detail',1,'$added_on','$image','$food_type')");
+				mysqli_query($con,"insert into dish(category_id,dish,dish_detail,status,added_on,image,type,taste) values('$category_id','$dish','$dish_detail',1,'$added_on','$image','$food_type','$taste')");
 				$did=mysqli_insert_id($con);
 				
 				$attributeArr=$_POST['attribute'];
@@ -134,7 +136,7 @@ $arrType=array('veg','non-veg');
                     </div>
                     <div class="form-group">
 					<label for="exampleInputName1">type</label>
-                      <select class="form-control" name="type" required>
+                      <select class="form-control" style="margin-bottom: 16px;" name="type" required>
 						<option value="">Select type</option>
 						<?php
 							foreach($arrType as $list){
@@ -151,7 +153,16 @@ $arrType=array('veg','non-veg');
                       <label for="exampleInputEmail3" required>Description</label>
                       <textarea name="dish_detail" class="form-control" placeholder="Enter Description"><?php echo $dish_detail?></textarea>
                     </div>
-					<div class="form-group">
+					<label for="taste">Taste</label>
+					<select class="form-control"style="margin-botton:16px;" name="taste" required>
+						<option value="">Select Taste Palette</option>
+						<option value="sweet">Sweet</option>
+						<option value="sour">Sour</option>
+						<option value="bitter">Bitter</option>
+						<option value="savoury">Savoury</option>
+						<option value="salty">Salty</option>
+					</select>
+					<div class="form-group" style="margin-top:16px">
                       <label for="exampleInputEmail3">Image</label>
                       <input type="file" class="form-control" placeholder="Enter Image" name="image" <?php echo $image_status?>>
 					  <div class="error mt8"><?php echo $image_error?></div>

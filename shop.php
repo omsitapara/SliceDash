@@ -48,7 +48,7 @@ $arrType=array('veg','non-veg','both');
                         </div>
                     </div>
                     <div class="banner-area pb-30">
-                            <a href="shop"><img alt="" src="assets/img/bannermain.jpg" height="200px"></a>
+                            <a href="choose"><img alt="" src="assets/img/bannermain.jpg" height="200px"></a>
                         </div>
                         <?php
                             $cat_id=0;
