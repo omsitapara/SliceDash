@@ -16,7 +16,7 @@ $savoury_sql="select * from dish where status='1' and taste='savoury' order by d
 $savoury_res=mysqli_query($con,$savoury_sql);
 $savoury_count=mysqli_num_rows($savoury_res);
 ?>
-
+<div style="margin:32px">
 <h4 style="color:red">Choose items according to your taste Pallette </h4>
 <button type="button" class="collapsible" style="margin-top:16px">Sweet</button>
 <div class="content">
@@ -357,6 +357,7 @@ $savoury_count=mysqli_num_rows($savoury_res);
                             </div>
                             
                         </div>
+</div>
 </div>
 <script>
     var coll = document.getElementsByClassName("collapsible");
