@@ -3987,7 +3987,7 @@ h4.grand-totall-title span {
 -----------------------------*/
 
 .login-form-container {
-    background: transparent none repeat scroll 0 0;
+    background: white none repeat scroll 0 0;
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
     padding: 80px;
     text-align: left;
@@ -5599,7 +5599,7 @@ h5.panel-title span {
   }
   
   /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-  .active, .collapsible:hover {
+  .activee, .collapsible:hover {
     background-color: #ccc;
   }
   
