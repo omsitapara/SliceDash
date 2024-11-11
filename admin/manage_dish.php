@@ -36,6 +36,7 @@ if(isset($_POST['submit'])){
 	$dish_detail=get_safe_value($_POST['dish_detail']);
 	$food_type=get_safe_value($_POST['type']);
 	$added_on=date('Y-m-d h:i:s');
+	$food_taste=get_safe_value($_POST['taste']);
 	
 	if($id==''){
 		$sql="select * from dish where dish='$dish'";
@@ -52,7 +53,7 @@ if(isset($_POST['submit'])){
 			}else{
 				$image=$_FILES['image']['name'];
 				$success = move_uploaded_file($_FILES['image']['tmp_name'],SERVER_DISH_IMAGE.$image);
-				mysqli_query($con,"insert into dish(category_id,dish,dish_detail,status,added_on,image,type,taste) values('$category_id','$dish','$dish_detail',1,'$added_on','$image','$food_type','$taste')");
+				mysqli_query($con,"insert into dish(category_id,dish,dish_detail,status,added_on,image,type,taste) values('$category_id','$dish','$dish_detail',1,'$added_on','$image','$food_type','$food_taste')");
 				$did=mysqli_insert_id($con);
 				
 				$attributeArr=$_POST['attribute'];
@@ -77,7 +78,7 @@ if(isset($_POST['submit'])){
 				}
 			}
 			if($image_error==''){
-				$sql="update dish set category_id='$category_id', dish='$dish' , dish_detail='$dish_detail' ,type='$food_type' $image_condition where id='$id'";
+				$sql="update dish set category_id='$category_id', dish='$dish' ,taste='$food_taste', dish_detail='$dish_detail' ,type='$food_type' $image_condition where id='$id'";
 				mysqli_query($con,$sql);
 				
 				$attributeArr=$_POST['attribute'];
@@ -135,7 +136,7 @@ $arrType=array('veg','non-veg');
 					  <div class="error mt8"><?php echo $msg?></div>
                     </div>
                     <div class="form-group">
-					<label for="exampleInputName1">type</label>
+					<label for="exampleInputName1">Type</label>
                       <select class="form-control" style="margin-bottom: 16px;" name="type" required>
 						<option value="">Select type</option>
 						<?php
